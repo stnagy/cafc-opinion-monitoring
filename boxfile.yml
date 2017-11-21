@@ -1,0 +1,38 @@
+run.config:
+  engine: ruby
+
+  extra_packages:
+    - nodejs
+    - libxml2
+    - libxslt
+    - nginx
+
+# run commands at specific points of a deploy
+deploy.config:  
+  # compile assets on deploy
+  extra_steps:
+    - rake assets:precompile
+  # seed or run db migrations on deploy
+  before_live:
+    web.main:
+      - rake db:setup_or_migrate
+
+# add a database
+data.db:  
+  image: nanobox/postgresql:9.4
+
+# add a web component and give it a "start" command
+web.main:  
+  start:
+    nginx: nginx -c /app/config/nginx.conf
+    puma: bundle exec puma -C /app/config/puma.rb
+    
+    
+  # add writable dirs to the web component
+  writable_dirs:
+    - tmp
+    - log
+
+  # the path to a logfile you want streamed to the nanobox dashboard
+  log_watch:
+    rails: 'log/production.log'
