@@ -64,3 +64,6 @@ bower.json
 .powenv
 
 # Ignore Byebug command history file.
+
+# Ignore Mac System Files
+*.DS_Store
