@@ -18,6 +18,9 @@ gem 'puma', '~> 3.7'
 # Use devise for auth
 gem 'devise'
 
+# Use mechanize for browsing CAFC website
+gem 'mechanize'
+
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 5.0'
 
@@ -37,7 +40,10 @@ gem 'turbolinks', '~> 5'
 gem 'jbuilder', '~> 2.5'
 
 # Use Redis adapter to run Action Cable in production
-# gem 'redis', '~> 3.0'
+gem 'redis', '~> 3.0'
+
+# Use sidekiq for jobs
+gem 'sidekiq'
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
