@@ -21,6 +21,10 @@ deploy.config:
 data.db:  
   image: nanobox/postgresql:9.4
 
+# add redis
+data.redis:
+  image: nanobox/redis:3.0
+
 # add a web component and give it a "start" command
 web.main:  
   start:
