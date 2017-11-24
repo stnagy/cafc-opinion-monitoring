@@ -1,0 +1,54 @@
+<!-- login button on navbar -->
+<%= render partial: "layouts/navbar" %>
+
+<div class='container'>
+	<div class='row'>
+		<!-- CAFC Opinion Table -->
+		<div class='col-6-md'>
+			<table class='table'>
+				<thead>
+					<tr>
+						<th>Name</th>
+						<th>#</th>
+						<th>Date</th>
+						<th>Type<th>
+					<tr>
+				<thead>
+				<tbody>
+					<% opinions.each do |opinion| %>
+						<tr>
+							<td><%= opinion.name %></td>
+							<td><%= opinion.number %></td>
+							<td><%= opinion.status_date %></td>
+							<td><%= opinion.precedential %></td>
+						</tr>
+					<% end %>
+				</tbody>
+			</table>
+		</div>
+	
+		<!-- CAFC Argument Schedule -->
+		<div class='col-6-md'>
+			<table class='table'>
+				<thead>
+					<tr>
+						<th>Name</th>
+						<th>#</th>
+						<th>Date</th>
+						<th>Courtroom<th>
+					<tr>
+				<thead>
+				<tbody>
+					<% arguments.each do |argument| %>
+						<tr>
+							<td><%= argument.name %></td>
+							<td><%= argument.number %></td>
+							<td><%= argument.status_date %></td>
+							<td><%= argument.courtroom %></td>
+						</tr>
+					<% end %>
+				</tbody>
+			</table>
+		</div>
+	</div>
+</div>
