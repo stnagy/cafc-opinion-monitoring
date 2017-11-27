@@ -45,6 +45,12 @@ gem 'redis', '~> 3.0'
 # Use sidekiq for jobs
 gem 'sidekiq'
 
+# Use ransack for searching
+gem 'ransack'
+
+# Use clockwork for scheduling
+gem 'clockwork'
+
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 

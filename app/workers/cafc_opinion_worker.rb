@@ -1,6 +1,7 @@
 class CafcOpinionWorker < Sidekiq::Worker
-	queue :high
-
+	include Sidekiq::Worker
+  sidekiq_options :queue => :high
+  
 	def perform
 		Litigation.get_cafc_opinions
 	end

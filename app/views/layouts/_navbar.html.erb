@@ -1,6 +1,29 @@
-Bootstrap Navbar
-Links to
- - Home
- - Search
- - Login
- - Logout
+<nav class='navbar navbar-expand-lg navbar-light bg-light'>
+	<a class='navbar-brand' href="/">CAFC Opinions</a>
+	<button class='navbar-toggler' type='button' data-toggle='collapse' data-target="#navbarSupportedContent" aria-controls='navbarSupportedContent' aria-expanded='false' aria-label='Toggle navigation'>
+		<span class='navbar-toggler-icon'></span>
+	</button>
+	
+	<div class='collapse navbar-collapse' id='navbarSupportedContent'>
+		<ul class='navbar-nav mr-auto'>
+			<li class='nav-item'>
+				<%= link_to "Home", root_path, class: 'nav-link' %>
+			</li>
+			<li class='nav-item'>
+				<%= link_to "Alerts", searches_path, class: 'nav-link' %>
+			</li>
+		</ul>
+		<ul class='navbar-nav ml-auto'>
+			<% if !user_signed_in? %>
+			<li class='nav-item'>
+				<%= button_to "Sign In", new_user_session_path, class: 'btn btn-outline-success my-2 my-sm-0' %>
+			</li>
+			<% else %>
+			<li class='nav-item'>
+				<%= button_to "Sign Out", destory_user_session_path, class: 'btn btn-outline-success my-2 my-sm-0' %>
+			</li>
+			<% end %>
+		</ul>
+	</div>
+		
+</nav>

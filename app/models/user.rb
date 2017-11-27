@@ -11,12 +11,8 @@ class User < ApplicationRecord
 	def check_for_search_results
 		searches = self.searches
 		
-		raise update_ransack_code
-		results = Ransack.search()
-		
-		results.each do |result|
-			raise make_the_search_result_association_with_user
-			# if new result, send email to user
+		searches.each do |search|
+			search.get_results
 		end
 	end
 

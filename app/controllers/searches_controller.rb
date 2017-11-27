@@ -1,6 +1,6 @@
 class SearchesController < ApplicationController
 
-	raise require_authentication_on_searches
+	before_action :authenticate_user!
 	
 	def index
 		# load searches and litigations that match the searches
@@ -9,8 +9,7 @@ class SearchesController < ApplicationController
 	
 	def show
 		@search = current_user.searches.find(params[:search][:id])
-		raise update_ransack_settings
-		@results = Ransack.search()
+		@results = @search.get_results.order(:created_at => 'asc').first(50)
 	end
 	
 	def new
