@@ -15,11 +15,11 @@ run.config:
 deploy.config:  
   # compile assets on deploy
   extra_steps:
-    - rake assets:precompile
+    - bundle exec rake assets:precompile
   # seed or run db migrations on deploy
   before_live:
     web.main:
-      - rake db:setup_or_migrate
+      - bundle exec rake db:setup_or_migrate
 
 # add a database
 data.db:  
@@ -34,9 +34,6 @@ web.main:
   start:
     nginx: nginx -c /app/config/nginx.conf
     puma: bundle exec puma -C /app/config/puma.rb
-    sidekiq: bundle exec sidekiq -C /app/config/sidekiq.yml
-    clock: bundle exec clockwork /app/clock.rb
-    
     
   # add writable dirs to the web component
   writable_dirs:
@@ -47,3 +44,16 @@ web.main:
   # the path to a logfile you want streamed to the nanobox dashboard
   log_watch:
     rails: 'log/production.log'
+
+worker.main:
+	start:
+		sidekiq: bundle exec sidekiq -C /app/config/sidekiq.yml
+    clock: bundle exec clockwork /app/clock.rb
+   
+   writable_dirs:
+   	- tmp
+   	- log
+   	- db
+  
+  log_watch:
+  	rails: 'log/production.log'

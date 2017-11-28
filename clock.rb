@@ -1,8 +1,7 @@
-require 'rubygems'
 require 'clockwork'
-require 'sidekiq'
-require './config/boot'
-require './config/environment'                                      
+require 'sidekiq'                                   
+require_relative "config/boot"
+require_relative "config/environment"
 
 Sidekiq.configure_server do |config|
   config.redis = { :url => "redis://#{ENV['DATA_REDIS_HOST']}:6379" }
