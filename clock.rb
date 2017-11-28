@@ -12,9 +12,6 @@ require './config/environment'
 Sidekiq.configure_client do |config|
   config.redis = { :url => "redis://#{ENV['DATA_REDIS_HOST']}:6379" }
   config.redis = { :size => 1 }
-  config.client_middleware do |chain|
-    chain.add Sidekiq::Status::ClientMiddleware
-  end
 end
 
 # control scheduled jobs like a boss
