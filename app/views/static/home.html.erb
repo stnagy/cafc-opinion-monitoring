@@ -21,7 +21,7 @@
 				<tbody>
 					<% @opinions.each do |opinion| %>
 						<tr>
-							<td><%= opinion.name %></td>
+							<td><%= link_to opinion.name, opinion.url %></td>
 							<td><%= opinion.number %></td>
 							<td><%= opinion.status_date.strftime("%D") %></td>
 							<td><%= opinion.precedential %></td>

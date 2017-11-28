@@ -16,11 +16,11 @@
 		<ul class='navbar-nav ml-auto'>
 			<% if !user_signed_in? %>
 			<li class='nav-item'>
-				<%= button_to "Sign In", new_user_session_path, class: 'btn btn-outline-success my-2 my-sm-0' %>
+				<%= button_to "Sign In", new_user_session_path, class: 'btn btn-outline-success my-2 my-sm-0', method: :get %>
 			</li>
 			<% else %>
 			<li class='nav-item'>
-				<%= button_to "Sign Out", destory_user_session_path, class: 'btn btn-outline-success my-2 my-sm-0' %>
+				<%= button_to "Sign Out", destroy_user_session_path, class: 'btn btn-outline-success my-2 my-sm-0', method: :delete %>
 			</li>
 			<% end %>
 		</ul>
