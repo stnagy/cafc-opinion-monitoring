@@ -4,11 +4,12 @@
 <% if alert %><div class='alert alert-warning'><%= alert %></div><% end %>
 <% if notice %><div class='alert alert-secondary'><%= notice %></div><% end %>
 
-<div class='container'>
-	<div class='row'>
+<div class='container-fluid'>
+	<div class='row mt-5'>
 		<!-- CAFC Opinion Table -->
 		<% if @opinions.length > 0 %>
-		<div class='col-6-md'>
+		<div class='col-md'>
+		<div class='col-md-12'>
 			<table class='table'>
 				<thead>
 					<tr>
@@ -32,7 +33,7 @@
 		</div>
 		<% end %>
 	
-		<!-- CAFC Argument Schedule -->
+		<!-- CAFC Argument Schedule 
 		<% if @arguments.length > 0 %>
 		<div class='col-6-md'>
 			<table class='table'>
@@ -56,6 +57,6 @@
 				</tbody>
 			</table>
 		</div>
-		<% end %>
+		<% end %>-->
 	</div>
 </div>

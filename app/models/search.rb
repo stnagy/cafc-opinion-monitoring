@@ -4,6 +4,8 @@ class Search < ApplicationRecord
 	has_many :search_results, dependent: :destroy
 	has_many :litigations, through: :search_results
 	
+	after_create :get_results
+	
 	def get_results
 		
 		# initialize params to put into ransack search

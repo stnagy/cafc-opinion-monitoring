@@ -1,21 +1,16 @@
 require 'sidekiq/web'
 
-Rails.application.routes.draw do
-  # resources :search_results
-  # resources :litigations
-  
-  mount Sidekiq::Web => '/sidekiq'
-  
-  root to: 'static_pages#index'
-  
+Rails.application.routes.draw do 
+   
   devise_for :users
-
-# For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
-  
+   
   authenticated :user do 
   	resources :searches
+  	mount Sidekiq::Web => '/sidekiq'
   end
   
+  root to: 'static_pages#index'
+   
   # DO NOT PUT ANY ROUTE BELOW THIS ROUTE
   match '*path' => redirect('/'), via: :get
   # ANY ROUTE BELOW HERE WILL NEVER BE REACHED

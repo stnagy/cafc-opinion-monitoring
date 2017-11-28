@@ -1,1 +1,74 @@
-Test!
+<%= render partial: 'layouts/navbar' %>
+
+<div class='container-fluid'>
+	
+	<div class='row mt-5'>
+		<div class='col-md-6'>
+			<div class='card'>
+				<%= form_for @search, url: searches_path do |f| %>
+				<div class="card-body">
+					<h2>New Alert</h2>
+					<div class='form-group'>
+						<%= f.label :name, "Case name" %>
+						<%= f.text_field :name, class: 'form-control', placeholder: 'Case name' %>
+					</div>
+					<div class='form-group'>
+						<%= f.label :number, "Appeal number" %>
+						<%= f.text_field :number, class: 'form-control', placeholder: 'Appeal number' %>
+					</div>
+						
+				</div>
+				<div class="card-footer bg-transparent">
+					<div class="actions">
+				    <%= f.submit "Submit", class: "btn btn-outline-primary" %>
+				  </div>
+				</div>	
+				<% end %>
+			</div>
+		</div>
+		
+		<div class='col-md-6'>
+			
+			<!-- Searches Table -->
+			<% @searches.each do |search| %>
+				<div class='card mb-2'>
+					<div class="card-body">
+						<table class='table'>
+							<thead>
+								<th>Case name</th>
+								<th>Appeal number</th>
+							</thead>
+							<tbody>
+								<tr>
+									<td><%= search.name %></td>
+									<td><%= search.number %></td>
+								</tr>
+							</tbody>
+						</table>
+						<table class='table'>
+							<thead>
+								<th colspan='4'>Results</th>
+							</thead>
+							<tbody>
+							<% search.litigations.each do |litigation| %>
+								<tr>
+									<td><%= link_to litigation.name, litigation.url, target: '_blank' %></td>
+									<td><%= litigation.number %></td>
+									<td><%= litigation.status_date.strftime("%D") %></td>
+									<td><%= litigation.precedential %></td>
+								</tr>
+							<% end %>
+							</tbody>
+						</table>
+					</div>
+					<div class='card-footer bg-transparent'>
+						<%= button_to "Delete", search_path(search), method: :delete, class: 'btn btn-outline-primary ml-auto' %>
+					</div>
+				</div>
+			<% end %>
+				
+		</div>
+		
+	</div>
+	
+</div>
