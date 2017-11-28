@@ -46,14 +46,14 @@ web.main:
     rails: 'log/production.log'
 
 worker.main:
-	start:
-		sidekiq: bundle exec sidekiq -C /app/config/sidekiq.yml
+  start:
+    sidekiq: bundle exec sidekiq -C /app/config/sidekiq.yml
     clock: bundle exec clockwork /app/clock.rb
-   
-   writable_dirs:
-   	- tmp
-   	- log
-   	- db
+           
+  writable_dirs:
+    - tmp
+    - log
+    - db
   
   log_watch:
-  	rails: 'log/production.log'
+    rails: 'log/production.log'
