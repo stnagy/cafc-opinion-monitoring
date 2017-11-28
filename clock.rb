@@ -25,7 +25,7 @@ module Clockwork
   	CafcOpinionWorker.perform_async
   end 
   
-  every.1.hour "Update CAFC Opinions" do 
+  every 1.hour "Update CAFC Opinions" do 
 		CafcOpinionWorker.perform_aync
 	end
 
