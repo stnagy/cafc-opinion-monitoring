@@ -1,4 +1,4 @@
-class CheckSearchesWorker < Sidekiq::Worker
+class CheckSearchesWorker
 	include Sidekiq::Worker
   sidekiq_options :queue => :high
 

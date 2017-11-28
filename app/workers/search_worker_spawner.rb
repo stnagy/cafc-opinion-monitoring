@@ -1,4 +1,4 @@
-class SearchWorkerSpawner < Sidekiq::Worker
+class SearchWorkerSpawner
 	include Sidekiq::Worker
   sidekiq_options :queue => :high
 	

@@ -1,4 +1,4 @@
-class CafcOpinionWorker < Sidekiq::Worker
+class CafcOpinionWorker
 	include Sidekiq::Worker
   sidekiq_options :queue => :high
   
