@@ -1,7 +1,6 @@
 require 'rubygems'
 require 'clockwork'
 require 'sidekiq'
-require 'sidekiq-status'
 require './config/boot'
 require './config/environment'
 # Sidekiq configuration
@@ -11,7 +10,7 @@ require './config/environment'
 # (2) Set the REDIS_URL environment variable to your redis address.                                        
 
 Sidekiq.configure_client do |config|
-  config.redis = { :url => "redis://" + ENV['DATA_REDIS_HOST'] + ":6379" }
+  config.redis = { :url => "redis://#{ENV['DATA_REDIS_HOST']}:6379" }
   config.redis = { :size => 1 }
   config.client_middleware do |chain|
     chain.add Sidekiq::Status::ClientMiddleware
@@ -21,41 +20,14 @@ end
 # control scheduled jobs like a boss
 
 module Clockwork
-
-  every 1.day, "TimelineWorker.perform_async", :at => '03:00', :tz => 'UTC' do
-    TimelineWorker.perform_async
-  end
-
-  every 1.day, "IprNightWorker.perform_async", :at => '04:00', :tz => 'UTC' do
-    IprNightWorker.perform_async
-  end
-
-  every 1.day, "FdaWorker.perform_async", :at => '05:00', :tz => 'UTC' do
-    FdaWorker.perform_async
-  end
-
-  every 1.day, "SolrIprWorker.perform_async", :at => '06:00', :tz => 'UTC' do
-    SolrIprWorker.perform_async
-  end
-
-  every 1.day, "SolrIprDeWorker.perform_async", :at => '06:00', :tz => 'UTC' do
-    SolrIprDeWorker.perform_async
-  end
   
-  every 1.day, "UpdatePatentCounts", :at => '06:00', :tz => 'UTC' do
-    UpdateDrugWorker.perform_async
-  end
-
-  every 1.day, "Cleaup bad data", :at => '03:00', :tz => 'UTC' do    
-    # database cleanup
-
-    # delete bad IPRS
-    Ipr.where(filing_date: nil).destroy_all
-  end
+  every 1.day "Update CAFC Opinions", :at => ['10:45', '10:50', '10:55', '11:00', '11:01', '11:02', '11:03', '11:04', '11:05', '11:10', '11:15'], :tz => "Eastern Time (US & Canada)" do
+  	CafcOpinionWorker.perform_async
+  end 
   
-  every 1.day, "Deliver User Activity", :at => '10:00', :tz => "UTC" do
-    DeliverSnowdenWorker.perform_async
-  end
+  every.1.hour "Update CAFC Opinions" do 
+		CafcOpinionWorker.perform_aync
+	end
 
   # clean out old (stuck) redis jobs
   # clean up before long running jobs, but leave a bit of time for long running jobs to complete
