@@ -23,7 +23,7 @@ module Clockwork
   end 
   
   every 1.hour, "Update CAFC Opinions" do 
-		CafcOpinionWorker.perform_aync
+		CafcOpinionWorker.perform_async
 	end
 
   # clean out old (stuck) redis jobs
