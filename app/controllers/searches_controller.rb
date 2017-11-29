@@ -4,7 +4,7 @@ class SearchesController < ApplicationController
 	
 	def index
 		# load searches and litigations that match the searches
-		@searches = current_user.searches.includes(:litigations).order(:status_date => 'desc')
+		@searches = current_user.searches.includes(:litigations).order(:created_at => 'desc')
 		@search = Search.new
 		puts "searches!"
 	end
