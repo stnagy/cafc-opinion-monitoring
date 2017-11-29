@@ -62,7 +62,16 @@ Rails.application.configure do
   # config.active_job.queue_name_prefix = "app_#{Rails.env}"
   config.action_mailer.perform_caching = false
   
-  config.action_mailer.default_url_options = { :host => 'e-discovery-cafc-opinion-monitoring.nanoapp.io' }
+  #config.action_mailer.default_url_options = { :host => 'e-discovery-cafc-opinion-monitoring.nanoapp.io' }
+	config.action_mailer.delivery_method = :smtp
+	config.action_mailer.smtp_settings = {
+	  :authentication => :plain,
+	  :address => "smtp.mailgun.org",
+	  :port => 587,
+	  :domain => "e-discovery-cafc-opinion-monitoring.nanoapp.io",
+	  :user_name => "postmaster@e-discovery-cafc-opinion-monitoring.nanoapp.io",
+	  :password => "06c48afb5eb7654c166f186feed3cda3"
+	}
 
   # Ignore bad email addresses and do not raise email delivery errors.
   # Set this to true and configure the email server for immediate delivery to raise delivery errors.

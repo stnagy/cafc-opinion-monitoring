@@ -53,5 +53,14 @@ Rails.application.configure do
   config.file_watcher = ActiveSupport::EventedFileUpdateChecker
   
   # Default configuration for action mailer per devise instructions
-  config.action_mailer.default_url_options = { host: 'localhost', port: 3000 }
+  # config.action_mailer.default_url_options = { host: 'localhost', port: 3000 }
+  config.action_mailer.delivery_method = :smtp
+	config.action_mailer.smtp_settings = {
+	  :authentication => :plain,
+	  :address => "smtp.mailgun.org",
+	  :port => 587,
+	  :domain => "e-discovery-cafc-opinion-monitoring.nanoapp.io",
+	  :user_name => "postmaster@e-discovery-cafc-opinion-monitoring.nanoapp.io",
+	  :password => "06c48afb5eb7654c166f186feed3cda3"
+	}
 end
