@@ -8,7 +8,7 @@ class SearchResult < ApplicationRecord
 	after_create :send_email_to_user
 	
 	def send_email_to_user
-		# raise error_need_to_implement_email
+		UpdateMailer.new_cafc_opinion(self.user.id, self.litigation.id).deliver_now
 	end
 	
 end
