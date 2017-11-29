@@ -33,20 +33,20 @@
 			<% @searches.each do |search| %>
 				<div class='card mb-2'>
 					<div class="card-body">
-						<b><u>Search:</u></b>
 						<table class='table'>
 							<thead>
-								<th>Case name</th>
+								<th>Search</th>
+								<th>Case Name</th>
 								<th>Appeal number</th>
 							</thead>
 							<tbody>
 								<tr>
+									<td></td>
 									<td><%= search.name %></td>
 									<td><%= search.number %></td>
 								</tr>
 							</tbody>
 						</table>
-						<b><u>Results:</u></b>
 						<table class='table'>
 							<thead>
 								<th colspan='4'>Results</th>
