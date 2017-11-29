@@ -10,11 +10,12 @@ class SearchResult < ApplicationRecord
 	after_create :send_email_to_user
 	
 	def send_email_to_user
-		client = Postmark::ApiClient.new('c7cf71e3-11fe-4820-8aa2-8ebba852e709')
-		
-		user = self.user
 		litigation = self.litigation
-		
+		return if litigation.status_date < Time.now - 7.days
+
+		user = self.user
+
+		client = Postmark::ApiClient.new('c7cf71e3-11fe-4820-8aa2-8ebba852e709')
 		client.deliver(
 		  from: 'info@76analytics.com',
 		  to: user.email,
