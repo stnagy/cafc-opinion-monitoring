@@ -19,8 +19,14 @@ module Clockwork
   	CafcOpinionWorker.perform_async
   end 
   
+  every 1.day, "Update CAFC Opinions", :at => ['10:46', '10:51', '10:56', '11:01', '11:02', '11:03', '11:04', '11:05', '11:06', '11:11', '11:16'], :tz => "Eastern Time (US & Canada)" do
+  	SearchWorkerSpawner.perform_async
+  end 
+
+  
   every 1.hour, "Update CAFC Opinions" do 
 		CafcOpinionWorker.perform_async
+		SearchWorkerSpawner.perform_async
 	end
 
 end
