@@ -1,2 +1,3 @@
-sidekiq: bundle exec sidekiq -C /app/config/sidekiq.yml
+web: bundle exec puma -C /app/config/puma.rb
+worker: bundle exec sidekiq -C /app/config/sidekiq.yml
 clock: bundle exec clockwork /app/clock.rb
