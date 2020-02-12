@@ -1,2 +1,2 @@
-worker: bundle exec rake jobs:work
-clock: bundle exec clockwork ./clock.rb
+sidekiq: bundle exec sidekiq -C /app/config/sidekiq.yml
+clock: bundle exec clockwork /app/clock.rb
