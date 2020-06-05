@@ -7,7 +7,7 @@ end
 
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-gem 'rails', '~> 5.1.4'
+gem 'rails', '>= 5.1.4'
 
 # Use postgres as the database for Active Record
 group :production do
@@ -15,7 +15,7 @@ group :production do
 end
 
 # Use Puma as the app server
-gem 'puma', '~> 3.12'
+gem 'puma', '>= 3.12'
 
 # Use devise for auth
 gem 'devise'
@@ -24,7 +24,7 @@ gem 'devise'
 gem 'mechanize'
 
 # Use SCSS for stylesheets
-gem 'sass-rails', '~> 5.0'
+gem 'sass-rails', '>= 5.0'
 
 # Use postmark for email
 gem 'postmark'
@@ -36,7 +36,7 @@ gem 'uglifier', '>= 1.3.0'
 # gem 'therubyracer', platforms: :ruby
 
 # Use CoffeeScript for .coffee assets and views
-gem 'coffee-rails', '~> 4.2'
+gem 'coffee-rails', '>= 4.2'
 
 # Turbolinks makes navigating your web application faster. Read more: https://github.com/turbolinks/turbolinks
 # gem 'turbolinks', '~> 5'
@@ -55,6 +55,12 @@ gem 'ransack'
 
 # Use clockwork for scheduling
 gem 'clockwork'
+
+#squash bugs
+gem "activesupport", ">= 5.2.4.3"
+gem "actionpack", ">= 5.2.4.3"
+gem "actionview", ">= 5.2.4.2"
+gem "activejob", ">= 5.1.6.1"
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
